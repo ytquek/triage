@@ -18,11 +18,13 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+     
       - name: Build and Push Docker image
         run: |
-            gcloud auth configure-docker
-            docker buildx create --use
-            docker buildx build --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/triage-app:${{ github.sha }} --push .
+          echo ${{ secrets.GCP_SA_KEY }} | docker login -u _json_key --password-stdin https://gcr.io
+          docker buildx create --use
+          docker buildx build --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/triage-app:${{ github.sha }} --push .
+      
   
 
       # The rest of your deployment steps follow...
