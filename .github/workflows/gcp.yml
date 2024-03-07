@@ -18,12 +18,12 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      - name: Deploy to Google Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v0.2.3 # Replace with the latest version
+        with:
+          service: my-service # Replace with your service name
+          region: asia-northeast1 # Replace with your desired region
+          image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/triage-app:${{ github.sha }} # Reference your image location
+          # Additional configuration options for Cloud Run deployment (refer to action documentation)
 
-      - name: Build and Push Docker image
-        run: |
-          docker buildx build --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/triage-app:${{ github.sha }} --push .
-
-      
       # The rest of your deployment steps follow...
