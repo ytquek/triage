@@ -18,5 +18,5 @@ public class triageBE extends HttpServlet {
 
         // ... pseudocode
        
-
+      }
 }
