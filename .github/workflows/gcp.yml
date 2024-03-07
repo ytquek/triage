@@ -17,6 +17,10 @@ jobs:
         uses: google-github-actions/auth@v0.4.0
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
+          
+      - name: Verify Secret Access (**REMOVE BEFORE COMMIT**!)
+        run: |
+              echo "Secret value: ${{ secrets.GCP_SA_KEY }}"
 
       - name: Deploy to Google Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2.2.0 # Replace with the latest version
@@ -26,8 +30,6 @@ jobs:
           image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/triage-app:${{ github.sha }} # Reference your image location
           # Additional configuration options for Cloud Run deployment (refer to action documentation)
 
-      - name: Verify Secret Access (**REMOVE BEFORE COMMIT**!)
-        run: |
-            echo "Secret value: ${{ secrets.GCP_SA_KEY }}"
+      
 
       # The rest of your deployment steps follow...
