@@ -21,7 +21,7 @@ jobs:
       - name: Build and Push Docker image
         run: |
               gcloud auth configure-docker
-              docker buildx build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/triage-app:${{ github.sha }} --push .
+              docker buildx build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/triage-app:${{ github.sha }}
               
 
       # The rest of your deployment steps follow...
