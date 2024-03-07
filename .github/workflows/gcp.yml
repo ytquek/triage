@@ -20,6 +20,7 @@ jobs:
 
       - name: Build and Push Docker image
         run: |
+            docker buildx create --use
             docker buildx build --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/triage-app:${{ github.sha }} --push .
   
 
