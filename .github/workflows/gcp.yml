@@ -19,7 +19,7 @@ jobs:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Deploy to Google Cloud Run
-        uses: google-github-actions/deploy-cloudrun@v0.2.3 # Replace with the latest version
+        uses: google-github-actions/deploy-cloudrun@v2.2.0 # Replace with the latest version
         with:
           service: my-service # Replace with your service name
           region: asia-northeast1 # Replace with your desired region
