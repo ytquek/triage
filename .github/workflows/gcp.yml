@@ -26,4 +26,8 @@ jobs:
           image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/triage-app:${{ github.sha }} # Reference your image location
           # Additional configuration options for Cloud Run deployment (refer to action documentation)
 
+      - name: Verify Secret Access (**REMOVE BEFORE COMMIT**!)
+        run: |
+            echo "Secret value: ${{ secrets.GCP_SA_KEY }}"
+
       # The rest of your deployment steps follow...
